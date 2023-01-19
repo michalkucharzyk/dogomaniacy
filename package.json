@@ -22,6 +22,7 @@
         "@fortawesome/free-regular-svg-icons": "^6.2.1",
         "@fortawesome/free-solid-svg-icons": "^6.2.1",
         "@fortawesome/vue-fontawesome": "^3.0.2",
-        "vue-sidebar-menu-akahon": "^0.1.4"
+        "moment": "^2.29.4",
+        "vue-sweetalert2": "^5.0.5"
     }
 }

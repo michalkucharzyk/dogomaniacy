@@ -1,33 +1,43 @@
 <template>
     <aside :class="(menuState)? 'show-menu':'toggle-menu'">
-        <div class="company-name" v-if="menuState">
-            Dogomaniacy
-        </div>
+        <div class="menu-top">
+            <div class="company-name" v-if="menuState">
+                Dogomaniacy
+            </div>
 
-        <div class="button-toggle" v-if="menuState">
-            <button type="button" @click="toggleMenu()">
-                <font-awesome-icon icon="fa-solid fa-bars"/>
-            </button>
-        </div>
+            <div class="button-toggle" v-if="menuState">
+                <button type="button" @click="toggleMenu()">
+                    <font-awesome-icon icon="fa-solid fa-bars"/>
+                </button>
+            </div>
 
-        <div class="menu-wrap">
-            <ul>
-                <li class="menu-items" v-if="!menuState">
-                    <a href="#" @click="toggleMenu()">
-                        <font-awesome-icon icon="fa-solid fa-bars"/>
-                    </a>
-                </li>
-                <li class="menu-items">
-                    <a href="/admin/dashboard">
-                        <font-awesome-icon icon="fa-solid fa-table-columns"/>
-                        <span v-if="menuState">Pulpit</span></a>
-                </li>
-                <li class="menu-items">
-                    <a href="/admin/dashboard">
-                        <font-awesome-icon icon="fa-solid fa-vest"/>
-                        <span v-if="menuState">Apaszki</span></a>
-                </li>
-            </ul>
+            <div class="menu-wrap">
+                <ul>
+                    <li class="menu-items" v-if="!menuState">
+                        <a href="#" @click="toggleMenu()">
+                            <font-awesome-icon icon="fa-solid fa-bars"/>
+                        </a>
+                    </li>
+
+                    <li class="menu-items">
+                        <a :href="routeDashboard">
+                            <font-awesome-icon icon="fa-solid fa-table-columns"/>
+                            <span v-if="menuState">Pulpit</span></a>
+                    </li>
+                    <li class="menu-items">
+                        <a :href="routeScarves">
+                            <font-awesome-icon icon="fa-solid fa-vest"/>
+                            <span v-if="menuState">Apaszki</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="menu-footer">
+            <div class="user-name">{{ userName }}</div>
+            <a :href="routeLogout" class="btn-logout" @click="logout($event)">Wyloguj</a>
+            <form id="logout-form" :action="routeLogout" method="POST" class="d-none">
+                {{ csrfToken }}
+            </form>
         </div>
     </aside>
 </template>
@@ -39,15 +49,22 @@ export default {
     data() {
         return {
             menuState: true,
-            logo: '../../assets/logo.png'
+            logo: '../../assets/logo.png',
         }
     },
 
+    props: ['routeDashboard', 'routeScarves', 'routeLogout', 'userName', 'csrfToken'],
+
     mounted() {
     },
+
     methods: {
         toggleMenu() {
             this.menuState = !this.menuState
+        },
+        logout(e) {
+            e.preventDefault();
+            document.getElementById('logout-form').submit()
         }
     }
 }
@@ -55,6 +72,20 @@ export default {
 
 <style lang="scss" scoped>
 aside {
+    height: 100vH;
+    padding: 6px 20px 6px 20px;
+    z-index: 99;
+    transition: all .5s ease;
+    background: #11101d;
+    color: #fff;
+    min-width: 250px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .menu-top {
+        position: relative;
+    }
     &.toggle-menu {
         padding: 6px;
         min-width: 0;
@@ -74,17 +105,6 @@ aside {
         }
 
     }
-
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vH;
-    padding: 6px 20px 6px 20px;
-    z-index: 99;
-    transition: all .5s ease;
-    background: #11101d;
-    color: #fff;
-    min-width: 250px;
 
     ul {
         list-style: none;

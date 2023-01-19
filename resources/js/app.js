@@ -15,14 +15,24 @@ import {createApp} from 'vue';
 
 const app = createApp({});
 
-import ExampleComponent from './components/ExampleComponent.vue';
+import ImageFormPreview from './components/ImageFormPreview.vue';
+app.component('image-form-preview', ImageFormPreview);
 
-app.component('example-component', ExampleComponent);
+import WindowAlert from './components/layouts/WindowAlert.vue';
+app.component('window-alert', WindowAlert);
 
 import SideBarMenuAdmin from './components/layouts/SideBarMenuAdmin.vue';
-
 app.component('side-bar-menu-admin', SideBarMenuAdmin);
 
+import ScarvesListAdmin from './components/admin/ScarvesListAdmin.vue';
+app.component('scarves-list-admin', ScarvesListAdmin);
+
+import ScarvesItemAdmin from './components/admin/ScarvesItemAdmin.vue';
+app.component('scarves-item-admin', ScarvesItemAdmin);
+
+/**
+ * Font awesome
+ */
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import {faTableColumns, faVest, faBars} from '@fortawesome/free-solid-svg-icons'
@@ -33,6 +43,14 @@ library.add(faBars)
 
 app.component('font-awesome-icon', FontAwesomeIcon);
 
+/**
+ * Sweet alert
+ */
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+app.use(VueSweetalert2)
+
+/**
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

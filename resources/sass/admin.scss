@@ -1,0 +1,30 @@
+.admin {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+
+    main {
+        width: 100%;
+    }
+
+    .admin-container {
+        padding: 1rem !important;
+        width: 100%;
+    }
+
+    .admin-title {
+        padding: 1rem 0 0 0;
+        border-bottom: 1px solid $admin-background;
+        h2 {
+            margin: 0 0 0 10px;
+        }
+    }
+
+    .flex-wrap-form-image {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 10px
+    }
+}
