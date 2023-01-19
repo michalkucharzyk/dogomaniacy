@@ -5,7 +5,7 @@
  */
 
 import './bootstrap';
-import { createApp } from 'vue';
+import {createApp} from 'vue';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -16,7 +16,22 @@ import { createApp } from 'vue';
 const app = createApp({});
 
 import ExampleComponent from './components/ExampleComponent.vue';
+
 app.component('example-component', ExampleComponent);
+
+import SideBarMenuAdmin from './components/layouts/SideBarMenuAdmin.vue';
+
+app.component('side-bar-menu-admin', SideBarMenuAdmin);
+
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
+import {faTableColumns, faVest, faBars} from '@fortawesome/free-solid-svg-icons'
+
+library.add(faTableColumns)
+library.add(faVest)
+library.add(faBars)
+
+app.component('font-awesome-icon', FontAwesomeIcon);
 
 /**
  * The following block of code may be used to automatically register your
