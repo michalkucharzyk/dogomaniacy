@@ -15,6 +15,7 @@ return [
         'save' => 'Pomyślnie zapisano dane',
         'updated' => 'Pomyślnie zaktualizowano dane',
         'destroy' => 'Pomyślnie usunięto wpis',
-        'delete_image' => 'Pomyślnie usunięto zdjęcie'
+        'delete_image' => 'Pomyślnie usunięto zdjęcie',
+        'delete' => 'Pomyślnie usunięto wpis'
     ]
 ];

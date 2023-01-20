@@ -114,18 +114,17 @@ class ScarvesManagementController extends AdminController
      * Remove the specified resource from storage.
      *
      * @param Scarves $scarf
-     * @return RedirectResponse
+     * @return JsonResponse
      */
-    public function destroy(Scarves $scarf): RedirectResponse
+    public function destroy(Scarves $scarf): JsonResponse
     {
-        foreach ($scarf->images() as $image) {
+        foreach ($scarf->images()->get() as $image) {
             Storage::disk('local')->delete(ScarvesImages::PATH_IMAGE.$image->name);
         }
 
         $scarf->delete();
 
-        return redirect()->route('admin.scarves.index')
-            ->with('success', __('default.success.destroy'));
+        return new JsonResponse(['message' => __('default.success.delete')], 200);
     }
 
     /**

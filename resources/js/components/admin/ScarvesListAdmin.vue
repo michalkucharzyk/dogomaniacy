@@ -1,17 +1,36 @@
 <template>
     <div class="scarves-list">
-        <div v-for="(scarf, index) in getScarves" class="scarves-item-wrap">
-            <scarves-item-admin v-bind="scarf" :key="scarf.id"></scarves-item-admin>
+        <div v-for="(scarf, index) in getScarves" class="scarves-item-wrap" v-if="!isDelete">
+            <scarves-item-admin :scarf="scarf" :key="scarf.id" @click-delete-scarf="deleteScarf"></scarves-item-admin>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            isDelete: false
+        }
+    },
+
     props: ['scarves'],
     computed: {
         getScarves() {
             return JSON.parse(this.scarves);
+        }
+    },
+    methods: {
+        deleteScarf: function (scarf) {
+            axios.delete('/admin/scarves/' + scarf.id)
+                .then(response => {
+                    this.$swal({
+                        title: 'Wspaniale',
+                        text: response.data.message,
+                        icon: "info",
+                    });
+                    this.isDelete = true
+                });
         }
     }
 }
