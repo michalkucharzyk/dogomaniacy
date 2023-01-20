@@ -9,6 +9,7 @@ use App\Utils\FileUtils;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ScarvesManagementController extends AdminController
@@ -55,6 +56,7 @@ class ScarvesManagementController extends AdminController
     {
         $scarf = new Scarves();
         $scarf->name = $request->input('name');
+        $scarf->slug = Str::slug($request->input('name'));
         $scarf->description = trim($request->input('description'));
         $scarf->public = (bool)$request->input('public');
         $scarf->save();
@@ -101,6 +103,7 @@ class ScarvesManagementController extends AdminController
     public function update(ScarvesStoreRequest $request, Scarves $scarf): RedirectResponse
     {
         $scarf->name = $request->input('name');
+        $scarf->slug = Str::slug($request->input('name'));
         $scarf->description = trim($request->input('description'));
         $scarf->public = (bool)$request->input('public');
         $scarf->save();
@@ -189,5 +192,18 @@ class ScarvesManagementController extends AdminController
         $image->delete();
 
         return new JsonResponse(['message' => __('default.success.delete_image')], 200);
+    }
+
+    /**
+     *
+     * @param Scarves $scarf
+     * @return JsonResponse
+     */
+    public function changePublic(Scarves $scarf): JsonResponse
+    {
+        $scarf->public = !$scarf->public;
+        $scarf->save();
+
+        return new JsonResponse(['message' => __('default.success.change_public')], 200);
     }
 }

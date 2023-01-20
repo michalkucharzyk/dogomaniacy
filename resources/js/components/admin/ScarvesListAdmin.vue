@@ -1,6 +1,6 @@
 <template>
     <div class="scarves-list">
-        <div v-for="(scarf, index) in getScarves" class="scarves-item-wrap" v-if="!isDelete">
+        <div v-for="(scarf, index) in getScarves" class="scarves-item-wrap">
             <scarves-item-admin :scarf="scarf" :key="scarf.id" @click-delete-scarf="deleteScarf"></scarves-item-admin>
         </div>
     </div>
@@ -8,12 +8,6 @@
 
 <script>
 export default {
-    data() {
-        return {
-            isDelete: false
-        }
-    },
-
     props: ['scarves'],
     computed: {
         getScarves() {
@@ -21,7 +15,8 @@ export default {
         }
     },
     methods: {
-        deleteScarf: function (scarf) {
+        deleteScarf: function (scarf, $event) {
+            let box = $event.target.closest('.scarves-item-wrap');
             axios.delete('/admin/scarves/' + scarf.id)
                 .then(response => {
                     this.$swal({
@@ -29,7 +24,7 @@ export default {
                         text: response.data.message,
                         icon: "info",
                     });
-                    this.isDelete = true
+                    box.remove()
                 });
         }
     }
@@ -52,6 +47,7 @@ export default {
         border-radius: 10px;
         border: 2px solid #11101d;
         padding: 10px;
+        max-width: 400px;
     }
 }
 </style>

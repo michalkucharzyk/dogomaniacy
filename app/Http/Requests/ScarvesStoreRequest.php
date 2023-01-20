@@ -25,12 +25,14 @@ class ScarvesStoreRequest extends FormRequest
     public function rules()
     {
         $mainImage =  'required|mimes:png,jpg,jpeg,|max:1024';
+        $name = 'required|unique:scarves|max:55';
         if ($this->isMethod('PUT')) {
             $mainImage =  'nullable|mimes:png,jpg,jpeg,|max:1024';
+            $name =  'required|unique:scarves,name,'.request()->route('scarf')->id.'|max:55';
         }
 
         return [
-            'name' => 'required|max:55',
+            'name' => $name,
             'description' => 'required',
             'public' => 'nullable',
             'main_image' => $mainImage,

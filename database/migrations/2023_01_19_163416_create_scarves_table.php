@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('scarves', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
+            $table->string('slug', 255)->nullable(false);
             $table->text('description');
             $table->boolean('public')->default(true);
             $table->timestamps();

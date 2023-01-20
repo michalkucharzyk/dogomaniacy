@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!isDelete">
+    <div>
         <div class="image">
             <div v-for="(image, index) in this.scarf.images">
                 <img v-if="image.main_image === 1" :src="image.path" :alt="image.name">
@@ -8,7 +8,13 @@
         </div>
         <div class="info">
             <div class="title">{{ this.scarf.name }}</div>
-            <div class="text-secondary">{{ this.scarf.description }}</div>
+            <div class="text-secondary" v-if="this.scarf.description.length < 150">{{ this.scarf.description }}</div>
+            <div class="text-secondary" v-else>{{ this.scarf.description.substring(0, 150) + "..." }}</div>
+
+            <div class="form-check form-switch">
+                <input class="form-check-input" @change="changePublic()" type="checkbox" :checked="this.isPublic">
+                <label class="form-check-label" for="public">Publikuje</label>
+            </div>
 
             <div class="other-info"><span
                 class="fw-bold">Data utworzenia: </span>{{ getFormatData(this.scarf.created_at) }}
@@ -17,7 +23,7 @@
                 class="fw-bold">Data aktualizacji: </span>{{ getFormatData(this.scarf.updated_at) }}
             </div>
             <div class="button-details">
-                <button type="button" class="btn btn-danger btn-sm" @click="deleteScarf(this.scarf)">Usuń</button>
+                <button type="button" class="btn btn-danger btn-sm" @click="deleteScarf(this.scarf, $event)">Usuń</button>
                 <a :href="getRouteEdit" class="btn btn-success btn-sm">Edytuj</a>
             </div>
         </div>
@@ -31,7 +37,7 @@ import moment from 'moment';
 export default {
     data() {
         return {
-            isDelete: false
+            isPublic: this.scarf.public
         }
     },
 
@@ -48,7 +54,30 @@ export default {
 
     },
     methods: {
-        deleteScarf(scarf) {
+        changePublic() {
+            this.isPublic = !this.isPublic;
+            this.$swal({
+                title: "Zmień status",
+                text: "Czy napewno chcesz zmienić status publikacji opaszki",
+                showCancelButton: true,
+                confirmButtonText: "Tak",
+                cancelButtonText: "Nie",
+                icon: "question"
+            }).then((result) => {
+                if (result.isConfirmed === true) {
+                    axios.put('/admin/scarves/'+ this.scarf.id+'/change-public}')
+                        .then(response => {
+                            this.$swal({
+                                title: 'Wspaniale',
+                                text: response.data.message,
+                                icon: "info",
+                            })
+                        })
+                }
+            });
+        },
+
+        deleteScarf(scarf, $event) {
             this.$swal({
                 title: "Usuń apaszkę",
                 text: "Czy napewno chcesz usunąć apaszkę",
@@ -58,7 +87,7 @@ export default {
                 icon: "question"
             }).then((result) => {
                 if (result.isConfirmed === true) {
-                    this.$emit('clickDeleteScarf', scarf);
+                    this.$emit('clickDeleteScarf', scarf, $event);
                 }
             });
         },
@@ -71,10 +100,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-
 .image {
-    width: 250px;
-
     img {
         width: 100%;
         height: 100px;

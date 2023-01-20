@@ -16,6 +16,7 @@ return [
         'updated' => 'Pomyślnie zaktualizowano dane',
         'destroy' => 'Pomyślnie usunięto wpis',
         'delete_image' => 'Pomyślnie usunięto zdjęcie',
-        'delete' => 'Pomyślnie usunięto wpis'
+        'delete' => 'Pomyślnie usunięto wpis',
+        'change_public' => 'Pomyślnie zmieniono status publikacji'
     ]
 ];

@@ -31,5 +31,6 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth'], 'as' => 'admin.'],
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('scarves', ScarvesManagementController::class);
     Route::delete('scarves/{scarf}/destroy-image/{image}', [ScarvesManagementController::class, 'destroyImage'])->name('scarves.destroy.image');
+    Route::put('scarves/{scarf}/change-public}', [ScarvesManagementController::class, 'changePublic'])->name('scarves.change.public');
 });
 
