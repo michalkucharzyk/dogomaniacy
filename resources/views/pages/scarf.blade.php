@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', ' - '.$scarf->name)
 @section('content')
     <div class="page-container no-title">
         <div class="scarf-details">
