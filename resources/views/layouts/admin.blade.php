@@ -27,6 +27,7 @@
                 route-dashboard="{{route('admin.dashboard')}}"
                 route-scarves="{{route('admin.scarves.index')}}"
                 route-logout="{{ route('logout') }}"
+                route-show="{{ route('home') }}"
                 user-name="{{ Auth::user()->name }}"
                 csrf-token="{{ csrf_token() }}"
         ></side-bar-menu-admin>

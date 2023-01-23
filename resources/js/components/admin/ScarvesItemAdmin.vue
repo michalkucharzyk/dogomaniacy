@@ -13,7 +13,12 @@
 
             <div class="form-check form-switch">
                 <input class="form-check-input" @change="changePublic()" type="checkbox" :checked="this.isPublic">
-                <label class="form-check-label" for="public">Publikuje</label>
+                <label class="form-check-label" for="public">Publikuj</label>
+            </div>
+
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" :checked="this.isSoldOut" disabled>
+                <label class="form-check-label" for="public">Wyprzedane</label>
             </div>
 
             <div class="other-info"><span
@@ -24,7 +29,8 @@
             </div>
             <div class="button-details">
                 <button type="button" class="btn btn-danger btn-sm" @click="deleteScarf(this.scarf, $event)">Usuń</button>
-                <a :href="getRouteEdit" class="btn btn-success btn-sm">Edytuj</a>
+                <a :href="getRouteEdit" class="btn btn-primary btn-sm">Edytuj</a>
+                <a :href="getRouteShow" target="_blank" class="btn btn-success btn-sm">Pokaż</a>
             </div>
         </div>
     </div>
@@ -37,7 +43,8 @@ import moment from 'moment';
 export default {
     data() {
         return {
-            isPublic: this.scarf.public
+            isPublic: this.scarf.public,
+            isSoldOut: this.scarf.sold_out
         }
     },
 
@@ -46,8 +53,13 @@ export default {
         getCountImage() {
             return this.scarf.images.length
         },
+
         getRouteEdit() {
             return '/admin/scarves/' + this.$.vnode.key + '/edit'
+        },
+
+        getRouteShow() {
+            return '/apaszki/' + this.scarf.slug
         }
     },
     mounted() {

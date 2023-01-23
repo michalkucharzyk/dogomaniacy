@@ -59,6 +59,7 @@ class ScarvesManagementController extends AdminController
         $scarf->slug = Str::slug($request->input('name'));
         $scarf->description = trim($request->input('description'));
         $scarf->public = (bool)$request->input('public');
+        $scarf->sold_out = (bool)$request->input('sold_out');
         $scarf->save();
 
         $this->storeImage($request, $scarf);
@@ -106,6 +107,7 @@ class ScarvesManagementController extends AdminController
         $scarf->slug = Str::slug($request->input('name'));
         $scarf->description = trim($request->input('description'));
         $scarf->public = (bool)$request->input('public');
+        $scarf->sold_out = (bool)$request->input('sold_out');
         $scarf->save();
 
         $this->storeImage($request, $scarf);

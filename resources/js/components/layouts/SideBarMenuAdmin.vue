@@ -18,7 +18,11 @@
                             <font-awesome-icon icon="fa-solid fa-bars"/>
                         </a>
                     </li>
-
+                    <li class="menu-items">
+                        <a :href="routeShow" target="_blank">
+                            <font-awesome-icon icon="fa-solid fa-earth-europe"/>
+                            <span v-if="menuState">Podgląd</span></a>
+                    </li>
                     <li class="menu-items">
                         <a :href="routeDashboard">
                             <font-awesome-icon icon="fa-solid fa-table-columns"/>
@@ -53,7 +57,7 @@ export default {
         }
     },
 
-    props: ['routeDashboard', 'routeScarves', 'routeLogout', 'userName', 'csrfToken'],
+    props: ['routeDashboard', 'routeScarves', 'routeLogout', 'routeShow', 'userName', 'csrfToken'],
 
     mounted() {
         this.menuState =  !(window.innerWidth < 1024)

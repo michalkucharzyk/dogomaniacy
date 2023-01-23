@@ -50,7 +50,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .thumbnails {
-    margin: 15px auto auto auto;
+    margin: 15px auto 25px auto;
     max-width: 50%;
 }
 

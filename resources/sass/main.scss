@@ -143,7 +143,6 @@
 
 
         .image {
-            //border: 1px solid #dac9c2;
             overflow: hidden;
             margin-bottom: 20px;
         }
@@ -179,6 +178,7 @@ footer {
     .scarf-images {
         width: 50%;
         margin-right: 20px;
+        position: relative;
 
         @media screen and (max-width: 768px) {
             width: 90%;
@@ -200,6 +200,16 @@ footer {
         }
     }
 
+    .scarf-sold-out {
+        padding: 5px 10px;
+        background-color: #dac9c2;
+        text-transform: uppercase;
+        color: $main-color;
+        width: 150px;
+        text-align: center;
+        font-weight: 300;
+    }
+
     .scarf-description {
         margin-left: 20px;
         width: 50%;
@@ -211,6 +221,9 @@ footer {
         .title {
             line-height: 1.2;
             margin-bottom: 20px;
+            @media screen and (max-width: 768px) {
+                text-align: center;
+            }
         }
 
         .description {
@@ -218,7 +231,6 @@ footer {
             font-size: 18px;
             line-height: 26px;
             font-weight: 300;
-            text-align: justify;
         }
     }
 }
