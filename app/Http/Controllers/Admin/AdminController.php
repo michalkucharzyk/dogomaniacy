@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
 {
@@ -14,5 +15,13 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    /**
+     * @return RedirectResponse
+     */
+    public function redirect(): RedirectResponse
+    {
+        return redirect(route('admin.dashboard'));
     }
 }

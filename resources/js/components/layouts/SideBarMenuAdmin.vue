@@ -72,7 +72,7 @@ export default {
 
 <style lang="scss" scoped>
 aside {
-    height: 100vH;
+    min-height: 100vH;
     padding: 6px 20px 6px 20px;
     z-index: 99;
     transition: all .5s ease;

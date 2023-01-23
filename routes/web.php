@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ScarvesManagementController;
 use App\Http\Controllers\HomeController;
@@ -27,6 +28,7 @@ Auth::routes(['register' => false]);
  */
 Route::group(['prefix' => 'admin/', 'middleware' => ['auth'], 'as' => 'admin.'], function ()
 {
+    Route::get('', [AdminController::class, 'redirect'])->name('admin');
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('scarves', ScarvesManagementController::class);
     Route::delete('scarves/{scarf}/destroy-image/{image}', [ScarvesManagementController::class, 'destroyImage'])->name('scarves.destroy.image');
