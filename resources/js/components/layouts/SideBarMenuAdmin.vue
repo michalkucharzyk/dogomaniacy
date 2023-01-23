@@ -36,7 +36,7 @@
             <div class="user-name">{{ userName }}</div>
             <a :href="routeLogout" class="btn-logout" @click="logout($event)">Wyloguj</a>
             <form id="logout-form" :action="routeLogout" method="POST" class="d-none">
-                {{ csrfToken }}
+                <input type="hidden" name="_token" :value="csrfToken">
             </form>
         </div>
     </aside>
@@ -56,6 +56,7 @@ export default {
     props: ['routeDashboard', 'routeScarves', 'routeLogout', 'userName', 'csrfToken'],
 
     mounted() {
+        this.menuState =  !(window.innerWidth < 1024)
     },
 
     methods: {
@@ -72,7 +73,7 @@ export default {
 
 <style lang="scss" scoped>
 aside {
-    height: 100vH;
+    min-height: 100vH;
     padding: 6px 20px 6px 20px;
     z-index: 99;
     transition: all .5s ease;
