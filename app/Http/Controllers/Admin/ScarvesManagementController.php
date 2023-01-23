@@ -107,8 +107,8 @@ class ScarvesManagementController extends AdminController
         $scarf->description = trim($request->input('description'));
         $scarf->public = (bool)$request->input('public');
         $scarf->save();
-        $this->storeImage($request, $scarf);
 
+        $this->storeImage($request, $scarf);
         return redirect()->route('admin.scarves.index')
             ->with('success', __('default.success.updated'));
     }
@@ -139,6 +139,7 @@ class ScarvesManagementController extends AdminController
      */
     private function storeImage(ScarvesStoreRequest $request, Scarves $scarf): void
     {
+
         $imagesSave = [];
         try {
             if ($request->hasFile('main_image')) {

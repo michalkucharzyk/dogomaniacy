@@ -24,10 +24,10 @@ class ScarvesStoreRequest extends FormRequest
      */
     public function rules()
     {
-        $mainImage =  'required|mimes:png,jpg,jpeg,|max:1024';
+        $mainImage =  'required|mimes:png,jpg,jpeg,|max:8096';
         $name = 'required|unique:scarves|max:55';
         if ($this->isMethod('PUT')) {
-            $mainImage =  'nullable|mimes:png,jpg,jpeg,|max:1024';
+            $mainImage =  'nullable|mimes:png,jpg,jpeg,|max:8096';
             $name =  'required|unique:scarves,name,'.request()->route('scarf')->id.'|max:55';
         }
 
@@ -37,7 +37,7 @@ class ScarvesStoreRequest extends FormRequest
             'public' => 'nullable',
             'main_image' => $mainImage,
             'attachment' => 'max:5',
-            'attachment.*' => 'nullable|mimes:png,jpg,jpeg,|max:1024'
+            'attachment.*' => 'nullable|mimes:png,jpg,jpeg,|max:8096'
         ];
     }
 }

@@ -30,6 +30,9 @@ app.component('scarves-list-admin', ScarvesListAdmin);
 import ScarvesItemAdmin from './components/admin/ScarvesItemAdmin.vue';
 app.component('scarves-item-admin', ScarvesItemAdmin);
 
+import VueperSlidesInit from './components/layouts/VueperSlidesInit.vue';
+app.component('slides-init', VueperSlidesInit);
+
 /**
  * Font awesome
  */
@@ -50,6 +53,13 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 app.use(VueSweetalert2)
 
+/**
+ * vueper sildes
+ */
+import { VueperSlides, VueperSlide } from 'vueperslides'
+import 'vueperslides/dist/vueperslides.css'
+app.component('vueper-slides', VueperSlides)
+app.component('vueper-slide', VueperSlide)
 /**
 /**
  * The following block of code may be used to automatically register your

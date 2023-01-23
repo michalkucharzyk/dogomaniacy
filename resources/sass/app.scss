@@ -9,7 +9,39 @@
 
 @import 'admin';
 
+.main {
+    // Main style
+    @import 'main';
+}
+
 body {
+    background-color: white;
+    font-family: 'Prompt', sans-serif !important;
+
+    .main {
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+
+        header {
+            min-height: 50px;
+        }
+
+        footer {
+            min-height: 50px;
+        }
+
+        main {
+            flex: 1;
+        }
+    }
+
+    h1 {
+        color: $main-color;
+        line-height: 1.2;
+        font-weight: 300;
+    }
 
     a:not(.btn) {
         color: #fff;
