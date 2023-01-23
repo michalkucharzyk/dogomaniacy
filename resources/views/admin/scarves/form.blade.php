@@ -74,6 +74,14 @@
             >
             <label class="form-check-label" for="public">{{__('scarves.label.public_description')}}</label>
         </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" name="sold_out" type="checkbox" id="sold_out"
+                   @if(isset ($scarf->sold_out) && (bool) $scarf->sold_out === true)
+                       checked
+                   @endif
+            >
+            <label class="form-check-label" for="public">{{__('scarves.label.sold_out')}}</label>
+        </div>
         <div class="d-flex flex-row-reverse">
             <div class="p-2">
                 <button class="btn btn-secondary">{{__('default.button.save')}}</button>

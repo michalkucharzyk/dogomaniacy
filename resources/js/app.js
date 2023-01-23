@@ -38,11 +38,12 @@ app.component('slides-init', VueperSlidesInit);
  */
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
-import {faTableColumns, faVest, faBars} from '@fortawesome/free-solid-svg-icons'
+import {faTableColumns, faVest, faBars, faEarthEurope} from '@fortawesome/free-solid-svg-icons'
 
 library.add(faTableColumns)
 library.add(faVest)
 library.add(faBars)
+library.add(faEarthEurope)
 
 app.component('font-awesome-icon', FontAwesomeIcon);
 
