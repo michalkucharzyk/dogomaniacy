@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/apaszki/{scarf:slug}', [HomeController::class, 'show'])->name('scarves.show');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 /**
  * Admin page
