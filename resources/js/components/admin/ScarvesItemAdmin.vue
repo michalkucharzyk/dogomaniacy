@@ -67,7 +67,6 @@ export default {
     },
     methods: {
         changePublic() {
-            this.isPublic = !this.isPublic;
             this.$swal({
                 title: "Zmień status",
                 text: "Czy napewno chcesz zmienić status publikacji opaszki",
@@ -77,6 +76,7 @@ export default {
                 icon: "question"
             }).then((result) => {
                 if (result.isConfirmed === true) {
+                    this.isPublic = !this.isPublic;
                     axios.put('/admin/scarves/'+ this.scarf.id+'/change-public}')
                         .then(response => {
                             this.$swal({
