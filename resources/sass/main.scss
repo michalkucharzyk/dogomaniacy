@@ -190,25 +190,17 @@ footer {
     .scarf-images {
         width: 50%;
         margin-right: 20px;
+        margin-bottom: 20px;
         position: relative;
 
         @media screen and (max-width: 768px) {
             width: 90%;
-            margin: auto;
+            margin: auto auto 20px auto;
         }
 
         img {
             width: 100%;
             height: auto;
-        }
-
-        .vueperslide__image {
-            background-size: contain !important;
-            background-repeat: no-repeat !important;
-        }
-
-        .vueperslides__arrows {
-            color: $main-background;
         }
     }
 

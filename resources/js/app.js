@@ -27,20 +27,22 @@ app.component('side-bar-menu-admin', SideBarMenuAdmin);
 import ScarvesListAdmin from './components/admin/ScarvesListAdmin.vue';
 app.component('scarves-list-admin', ScarvesListAdmin);
 
-import VueperSlidesInit from './components/layouts/VueperSlidesInit.vue';
-app.component('slides-init', VueperSlidesInit);
+import ImageSliders from './components/layouts/ImageSliders.vue';
+app.component('image-sliders', ImageSliders);
 
 /**
  * Font awesome
  */
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
-import {faTableColumns, faVest, faBars, faEarthEurope} from '@fortawesome/free-solid-svg-icons'
+import {faTableColumns, faVest, faBars, faEarthEurope, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 
 library.add(faTableColumns)
 library.add(faVest)
 library.add(faBars)
 library.add(faEarthEurope)
+library.add(faChevronLeft)
+library.add(faChevronRight)
 
 app.component('font-awesome-icon', FontAwesomeIcon);
 
