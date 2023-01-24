@@ -169,7 +169,6 @@ export default {
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
-        transition: all 0.5s ease;
 
         @media screen and (max-width: 768px) {
             height: 300px;
