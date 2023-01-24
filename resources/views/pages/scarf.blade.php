@@ -4,7 +4,7 @@
     <div class="page-container no-title">
         <div class="scarf-details">
             <div class="scarf-images">
-                <slides-init :slides-list="{{json_encode($slides)}}"></slides-init>
+                <image-sliders :images-list="{{json_encode($images)}}"></image-sliders>
             </div>
             <div class="scarf-description">
                 <div class="title">

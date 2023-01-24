@@ -25,10 +25,16 @@ class HomeController extends Controller
     public function show(Scarves $scarf): Renderable
     {
         $slideImage = [];
-        foreach ($scarf->images()->get() as $item) {
-            $slideImage[] = ['image' => $item->path];
+        $images = [];
+        foreach ($scarf->images()->get() as $key => $item) {
+            $images[] = [
+                'src' =>  $item->path,
+                'main_image' => $item->main_image,
+                'title' => $item->name,
+                'index' => $key
+            ];
         }
 
-        return view('pages.scarf', ['scarf' => $scarf, 'slides' => $slideImage]);
+        return view('pages.scarf', ['scarf' => $scarf, 'images' => $images]);
     }
 }
