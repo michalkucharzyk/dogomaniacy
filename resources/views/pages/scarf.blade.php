@@ -17,10 +17,10 @@
                 </div>
                 <div class="description-wrapper">
                     <div class="header-description">Opis</div>
-                    <div class="description">{{$scarf->description}}</div>
+                    <div class="description">{!! $scarf->description !!}</div>
                     @if($scarf->description_care)
                         <div class="header-description">Pielęgnacja</div>
-                        <div class="description">{{$scarf->description_care}}</div>
+                        <div class="description">{!! $scarf->description_care !!}</div>
                     @endif
                 </div>
             </div>

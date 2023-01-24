@@ -22,6 +22,7 @@
         "@fortawesome/free-regular-svg-icons": "^6.2.1",
         "@fortawesome/free-solid-svg-icons": "^6.2.1",
         "@fortawesome/vue-fontawesome": "^3.0.2",
+        "@tinymce/tinymce-vue": "^4.0.7",
         "moment": "^2.29.4",
         "vue-easy-lightbox": "^1.11.0",
         "vue-sweetalert2": "^5.0.5"

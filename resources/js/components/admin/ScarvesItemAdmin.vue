@@ -8,8 +8,6 @@
         </div>
         <div class="info">
             <div class="title">{{ this.scarf.name }}</div>
-            <div class="text-secondary" v-if="this.scarf.description.length < 50">{{ this.scarf.description }}</div>
-            <div class="text-secondary" v-else>{{ this.scarf.description.substring(0, 50) + "..." }}</div>
 
             <div class="form-check form-switch">
                 <input class="form-check-input" @change="changePublic()" type="checkbox" :checked="this.isPublic">

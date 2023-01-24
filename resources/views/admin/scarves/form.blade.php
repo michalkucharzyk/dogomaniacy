@@ -3,7 +3,7 @@
 @section('title', 'Dodaj nową apaszkę')
 
 @section('content')
-    <form method="POST" action="{{$route}}" enctype="multipart/form-data">
+    <form method="POST" action="{{$route}}" enctype="multipart/form-data" class="scarves-form">
         @csrf
         @if ($type === 'edit')
             @method('PUT')
@@ -24,15 +24,15 @@
                    value="@if(old('position')){{old('position')}}@elseif(isset ($scarf->position)){{$scarf->position}}@endif"
                    required>
         </div>
-        <div class="mb-2"></div>
+        <div class="mb-3"></div>
         <div class="form-group">
             <label for="descriptionScarves">{{__('scarves.label.description')}}</label>
-            <textarea class="form-control" name="description" id="descriptionScarves" rows="5" required>@if(old('description')){{old('description')}}@elseif(isset ($scarf->description)){{$scarf->description}}@endif</textarea>
+            <wysiwyg-editor name-selector='description' value='@if(old('description')){{old('description')}}@elseif(isset ($scarf->description)){{$scarf->description}}@endif'></wysiwyg-editor>
         </div>
-        <div class="mb-2"></div>
+        <div class="mb-3"></div>
         <div class="form-group">
             <label for="description_care">{{__('scarves.label.description_care')}}</label>
-            <textarea class="form-control" name="description_care" id="description_care" rows="5">@if(old('description_care')){{old('description_care')}}@elseif(isset ($scarf->description_care)){{$scarf->description_care}}@endif</textarea>
+            <wysiwyg-editor name-selector='description_care' value='@if(old('description_care')){{old('description_care')}}@elseif(isset ($scarf->description_care)){{$scarf->description_care}}@endif'></wysiwyg-editor>
         </div>
         <div class="mb-2"></div>
         <div class="form-group">
@@ -74,7 +74,7 @@
                        accept=".png,.img,.jpeg,"/>
             </div>
         </div>
-        <div class="mb-2"></div>
+        <div class="mb-4"></div>
         <div class="form-check form-switch">
             <input class="form-check-input" name="public" type="checkbox" id="public"
                    @if(isset ($scarf->public))
@@ -100,6 +100,5 @@
                 <button class="btn btn-secondary">{{__('default.button.save')}}</button>
             </div>
         </div>
-
     </form>
 @endsection

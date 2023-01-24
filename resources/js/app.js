@@ -30,6 +30,9 @@ app.component('scarves-list-admin', ScarvesListAdmin);
 import ImageSliders from './components/layouts/ImageSliders.vue';
 app.component('image-sliders', ImageSliders);
 
+import WysiwygEditor from './components/WysiwygEditor.vue';
+app.component('wysiwyg-editor', WysiwygEditor);
+
 /**
  * Font awesome
  */
