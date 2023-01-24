@@ -54,7 +54,7 @@ export default {
         border-radius: 10px;
         border: 2px solid #11101d;
         padding: 10px;
-        max-width: 400px;
+        max-width: 300px;
     }
 }
 </style>
