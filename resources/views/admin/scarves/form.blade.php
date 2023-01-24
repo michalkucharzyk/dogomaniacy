@@ -27,7 +27,12 @@
         <div class="mb-2"></div>
         <div class="form-group">
             <label for="descriptionScarves">{{__('scarves.label.description')}}</label>
-            <textarea class="form-control" name="description" id="descriptionScarves" rows="5">@if(old('description')){{old('description')}}@elseif(isset ($scarf->description)){{$scarf->description}}@endif</textarea>
+            <textarea class="form-control" name="description" id="descriptionScarves" rows="5" required>@if(old('description')){{old('description')}}@elseif(isset ($scarf->description)){{$scarf->description}}@endif</textarea>
+        </div>
+        <div class="mb-2"></div>
+        <div class="form-group">
+            <label for="description_care">{{__('scarves.label.description_care')}}</label>
+            <textarea class="form-control" name="description_care" id="description_care" rows="5">@if(old('description_care')){{old('description_care')}}@elseif(isset ($scarf->description_care)){{$scarf->description_care}}@endif</textarea>
         </div>
         <div class="mb-2"></div>
         <div class="form-group">

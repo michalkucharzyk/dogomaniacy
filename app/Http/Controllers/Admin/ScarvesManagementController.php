@@ -58,6 +58,7 @@ class ScarvesManagementController extends AdminController
         $scarf->name = $request->input('name');
         $scarf->slug = Str::slug($request->input('name'));
         $scarf->description = trim($request->input('description'));
+        $scarf->description_care = trim($request->input('description_care'));
         $scarf->public = (bool) $request->input('public');
         $scarf->position = (int) $request->input('position');
         $scarf->sold_out = (bool) $request->input('sold_out');
@@ -107,6 +108,7 @@ class ScarvesManagementController extends AdminController
         $scarf->name = $request->input('name');
         $scarf->slug = Str::slug($request->input('name'));
         $scarf->description = trim($request->input('description'));
+        $scarf->description_care = trim($request->input('description_care'));
         $scarf->public = (bool) $request->input('public');
         $scarf->position = (int) $request->input('position');
         $scarf->sold_out = (bool) $request->input('sold_out');

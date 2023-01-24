@@ -34,6 +34,7 @@ class ScarvesStoreRequest extends FormRequest
         return [
             'name' => $name,
             'description' => 'required',
+            'description_care' => 'nullable',
             'public' => 'nullable',
             'position' => 'nullable|numeric|min:1|max:99999',
             'main_image' => $mainImage,

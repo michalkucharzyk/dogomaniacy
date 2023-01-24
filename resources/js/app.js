@@ -35,7 +35,8 @@ app.component('image-sliders', ImageSliders);
  */
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
-import {faTableColumns, faVest, faBars, faEarthEurope, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {faTableColumns, faVest, faBars, faEarthEurope, faChevronLeft, faChevronRight, faRectangleList}
+    from '@fortawesome/free-solid-svg-icons'
 
 library.add(faTableColumns)
 library.add(faVest)
@@ -43,6 +44,7 @@ library.add(faBars)
 library.add(faEarthEurope)
 library.add(faChevronLeft)
 library.add(faChevronRight)
+library.add(faRectangleList)
 
 app.component('font-awesome-icon', FontAwesomeIcon);
 

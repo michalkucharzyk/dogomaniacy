@@ -10,6 +10,7 @@ return [
         'public_description' => 'Opublikuj wpis na stronie',
         'sold_out' => 'Wyprzedane',
         'position' => 'Kolejność',
-        'position_placeholder' => 'Kolejność wyświetlania apaszki'
+        'position_placeholder' => 'Kolejność wyświetlania apaszki',
+        'description_care' => 'Pielęgnacja',
     ],
 ];
