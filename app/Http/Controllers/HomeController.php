@@ -13,7 +13,10 @@ class HomeController extends Controller
      */
     public function index(): Renderable
     {
-        $scarves = Scarves::where(['public' => true])->get();
+        $scarves = Scarves::where(['public' => true])
+            ->orderBy('position', 'asc')
+            ->orderBy('id', 'desc')
+            ->get();
 
         return view('pages.home', ['scarves' => $scarves]);
     }
@@ -24,7 +27,6 @@ class HomeController extends Controller
      */
     public function show(Scarves $scarf): Renderable
     {
-        $slideImage = [];
         $images = [];
         foreach ($scarf->images()->get() as $key => $item) {
             $images[] = [

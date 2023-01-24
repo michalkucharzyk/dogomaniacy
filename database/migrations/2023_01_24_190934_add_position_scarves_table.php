@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::table('scarves', function (Blueprint $table)
         {
-            $table->boolean('sold_out')->default(false)->after('public');
+            $table->integer('position')->default(null)->after('public');
         });
     }
 
@@ -27,7 +27,7 @@ return new class extends Migration {
     {
         Schema::table('scarves', function (Blueprint $table)
         {
-            $table->dropColumn('sold_out');
+            $table->dropColumn('position');
         });
     }
 };

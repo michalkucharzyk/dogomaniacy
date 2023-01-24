@@ -22,7 +22,7 @@ class ScarvesManagementController extends AdminController
     public function index(): Renderable
     {
         $data = [];
-        foreach (Scarves::all() as $item) {
+        foreach (Scarves::orderBy('position', 'asc')->orderBy('id', 'desc')->get() as $item) {
             $tmp = $item;
             $tmp['images'] = $item->images()->get();
             $data[] = $tmp;
@@ -58,8 +58,9 @@ class ScarvesManagementController extends AdminController
         $scarf->name = $request->input('name');
         $scarf->slug = Str::slug($request->input('name'));
         $scarf->description = trim($request->input('description'));
-        $scarf->public = (bool)$request->input('public');
-        $scarf->sold_out = (bool)$request->input('sold_out');
+        $scarf->public = (bool) $request->input('public');
+        $scarf->public = (int) $request->input('position');
+        $scarf->sold_out = (bool) $request->input('sold_out');
         $scarf->save();
 
         $this->storeImage($request, $scarf);
@@ -106,8 +107,9 @@ class ScarvesManagementController extends AdminController
         $scarf->name = $request->input('name');
         $scarf->slug = Str::slug($request->input('name'));
         $scarf->description = trim($request->input('description'));
-        $scarf->public = (bool)$request->input('public');
-        $scarf->sold_out = (bool)$request->input('sold_out');
+        $scarf->public = (bool) $request->input('public');
+        $scarf->public = (int) $request->input('position');
+        $scarf->sold_out = (bool) $request->input('sold_out');
         $scarf->save();
 
         $this->storeImage($request, $scarf);
@@ -124,7 +126,7 @@ class ScarvesManagementController extends AdminController
     public function destroy(Scarves $scarf): JsonResponse
     {
         foreach ($scarf->images()->get() as $image) {
-            Storage::disk('local')->delete(ScarvesImages::PATH_IMAGE.$image->name);
+            Storage::disk('local')->delete(ScarvesImages::PATH_IMAGE . $image->name);
         }
 
         $scarf->delete();
@@ -148,11 +150,11 @@ class ScarvesManagementController extends AdminController
                 $mainImage = $request->file('main_image');
                 $nameFileMain = FileUtils::createNameFile($mainImage);
 
-                Storage::disk('local')->put(ScarvesImages::PATH_IMAGE.$nameFileMain, file_get_contents($mainImage));
+                Storage::disk('local')->put(ScarvesImages::PATH_IMAGE . $nameFileMain, file_get_contents($mainImage));
                 $image = new ScarvesImages();
                 $image->name = $nameFileMain;
                 $image->original_name = $mainImage->getClientOriginalName();
-                $image->path = '/storage/scarves/'.$nameFileMain;
+                $image->path = '/storage/scarves/' . $nameFileMain;
                 $image->main_image = true;
                 $image->save();
                 $imagesSave[] = $image;
@@ -161,11 +163,11 @@ class ScarvesManagementController extends AdminController
             if ($request->hasFile('additional_image')) {
                 foreach ($request->file('additional_image') as $images) {
                     $nameFile = FileUtils::createNameFile($images);
-                    Storage::disk('local')->put(ScarvesImages::PATH_IMAGE.$nameFile, file_get_contents($images));
+                    Storage::disk('local')->put(ScarvesImages::PATH_IMAGE . $nameFile, file_get_contents($images));
                     $image = new ScarvesImages();
                     $image->name = $nameFile;
                     $image->original_name = $images->getClientOriginalName();
-                    $image->path = '/storage/scarves/'.$nameFile;
+                    $image->path = '/storage/scarves/' . $nameFile;
                     $image->main_image = false;
                     $image->save();
                     $imagesSave[] = $image;
@@ -191,7 +193,7 @@ class ScarvesManagementController extends AdminController
      */
     public function destroyImage(Scarves $scarf, ScarvesImages $image)
     {
-        Storage::disk('local')->delete(ScarvesImages::PATH_IMAGE.$image->name);
+        Storage::disk('local')->delete(ScarvesImages::PATH_IMAGE . $image->name);
         $image->delete();
 
         return new JsonResponse(['message' => __('default.success.delete_image')], 200);
