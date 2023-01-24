@@ -18,6 +18,14 @@
         </div>
         <div class="mb-2"></div>
         <div class="form-group">
+            <label for="position">{{__('scarves.label.position')}}</label>
+            <input type="number" name="position" class="form-control" id="position"
+                   placeholder="{{__('scarves.label.position_placeholder')}}"
+                   value="@if(old('position')){{old('position')}}@elseif(isset ($scarf->position)){{$scarf->position}}@endif"
+                   required>
+        </div>
+        <div class="mb-2"></div>
+        <div class="form-group">
             <label for="descriptionScarves">{{__('scarves.label.description')}}</label>
             <textarea class="form-control" name="description" id="descriptionScarves" rows="5">@if(old('description')){{old('description')}}@elseif(isset ($scarf->description)){{$scarf->description}}@endif</textarea>
         </div>

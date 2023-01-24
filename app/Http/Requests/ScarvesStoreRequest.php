@@ -12,7 +12,7 @@ class ScarvesStoreRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,7 +22,7 @@ class ScarvesStoreRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $mainImage =  'required|mimes:png,jpg,jpeg,|max:15360';
         $name = 'required|unique:scarves|max:55';
@@ -35,6 +35,7 @@ class ScarvesStoreRequest extends FormRequest
             'name' => $name,
             'description' => 'required',
             'public' => 'nullable',
+            'position' => 'nullable|numeric|min:1|max:99999',
             'main_image' => $mainImage,
             'attachment' => 'max:5',
             'attachment.*' => 'nullable|mimes:png,jpg,jpeg,|max:15360'

@@ -9,5 +9,7 @@ return [
         'additional_image' => 'Zdjęcia dodatkowe',
         'public_description' => 'Opublikuj wpis na stronie',
         'sold_out' => 'Wyprzedane',
+        'position' => 'Kolejność',
+        'position_placeholder' => 'Kolejność wyświetlania apaszki'
     ],
 ];
