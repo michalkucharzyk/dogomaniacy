@@ -13,26 +13,26 @@
             <label for="nameScarves">{{__('scarves.label.name')}}</label>
             <input type="text" name="name" class="form-control" id="nameScarves"
                    placeholder="{{__('scarves.label.name_placeholder')}}"
-                   @if(isset ($scarf->name)) value="{{$scarf->name}}"
-                   @endif>
+                   value="@if(old('name')){{old('name')}}@elseif(isset ($scarf->name)){{$scarf->name}}@endif"
+                   required>
         </div>
         <div class="mb-2"></div>
         <div class="form-group">
             <label for="descriptionScarves">{{__('scarves.label.description')}}</label>
-            <textarea class="form-control" name="description" id="descriptionScarves" rows="5">@if(isset ($scarf->description)){{$scarf->description}}@endif</textarea>
+            <textarea class="form-control" name="description" id="descriptionScarves" rows="5">@if(old('description')){{old('description')}}@elseif(isset ($scarf->description)){{$scarf->description}}@endif</textarea>
         </div>
         <div class="mb-2"></div>
         <div class="form-group">
             <label for="attachment" class="form-label">{{__('scarves.label.main_image')}}</label>
             @if(isset($scarf->images))
                 <div class="flex-wrap-form-image">
-                @foreach ($scarf->images as $image)
-                    @if ((bool) $image->main_image === true)
-                        <image-form-preview :image="{{$image}}"
-                                                      :route-delete="'{{route('admin.scarves.destroy.image', ['scarf' => $scarf, 'image' => $image])}}'">
-                        </image-form-preview>
-                    @endif
-                @endforeach
+                    @foreach ($scarf->images as $image)
+                        @if ((bool) $image->main_image === true)
+                            <image-form-preview :image="{{$image}}"
+                                                :route-delete="'{{route('admin.scarves.destroy.image', ['scarf' => $scarf, 'image' => $image])}}'">
+                            </image-form-preview>
+                        @endif
+                    @endforeach
                 </div>
             @endif
             <div>
@@ -47,13 +47,13 @@
             <label for="attachment" class="form-label">{{__('scarves.label.additional_image')}}</label>
             @if(isset($scarf->images))
                 <div class="flex-wrap-form-image">
-                @foreach ($scarf->images as $image)
-                    @if ((bool) $image->main_image === false)
-                        <image-form-preview :image="{{$image}}"
-                                                      :route-delete="'{{route('admin.scarves.destroy.image', ['scarf' => $scarf, 'image' => $image])}}'">
-                        </image-form-preview>
-                    @endif
-                @endforeach
+                    @foreach ($scarf->images as $image)
+                        @if ((bool) $image->main_image === false)
+                            <image-form-preview :image="{{$image}}"
+                                                :route-delete="'{{route('admin.scarves.destroy.image', ['scarf' => $scarf, 'image' => $image])}}'">
+                            </image-form-preview>
+                        @endif
+                    @endforeach
                 </div>
             @endif
             <div>
@@ -78,7 +78,7 @@
             <input class="form-check-input" name="sold_out" type="checkbox" id="sold_out"
                    @if(isset ($scarf->sold_out) && (bool) $scarf->sold_out === true)
                        checked
-                   @endif
+                    @endif
             >
             <label class="form-check-label" for="public">{{__('scarves.label.sold_out')}}</label>
         </div>

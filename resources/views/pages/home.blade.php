@@ -18,6 +18,9 @@
                                     @break
                                 @endif
                             @endforeach
+                            @if($scarf->sold_out)
+                                <div class="scarf-sold-out">Wyprzedane</div>
+                            @endif
                         </div>
                         <div class="title">
                             <h2>{{$scarf->name}}</h2>

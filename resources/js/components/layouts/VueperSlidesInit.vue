@@ -37,8 +37,14 @@
 </template>
 
 <script>
+import 'vueperslides/dist/vueperslides.css'
+import {VueperSlides, VueperSlide} from 'vueperslides'
+
 export default {
     props: ['slidesList'],
+    components: {
+        VueperSlides, VueperSlide
+    },
     data: () => ({
         slides: []
     }),
