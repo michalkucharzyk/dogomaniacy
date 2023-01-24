@@ -1,14 +1,21 @@
 <template>
     <div class="scarves-list">
-        <div v-for="(scarf, index) in getScarves" class="scarves-item-wrap">
+        <div v-for="(scarf) in getScarves" class="scarves-item-wrap">
             <scarves-item-admin :scarf="scarf" :key="scarf.id" @click-delete-scarf="deleteScarf"></scarves-item-admin>
         </div>
     </div>
 </template>
 
 <script>
+
+import ScarvesItemAdmin from './ScarvesItemAdmin.vue';
+
 export default {
     props: ['scarves'],
+    components: {
+        ScarvesItemAdmin
+    },
+
     computed: {
         getScarves() {
             return JSON.parse(this.scarves);
