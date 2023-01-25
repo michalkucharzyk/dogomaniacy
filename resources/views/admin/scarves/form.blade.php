@@ -34,6 +34,11 @@
             <label for="description_care">{{__('scarves.label.description_care')}}</label>
             <wysiwyg-editor name-selector='description_care' value='@if(old('description_care')){{old('description_care')}}@elseif(isset ($scarf->description_care)){{$scarf->description_care}}@endif'></wysiwyg-editor>
         </div>
+        <div class="mb-3"></div>
+        <div class="form-group">
+            <label for="description_comments">{{__('scarves.label.description_comments')}}</label>
+            <wysiwyg-editor name-selector='description_comments' value='@if(old('description_comments')){{old('description_comments')}}@elseif(isset ($scarf->description_comments)){{$scarf->description_comments}}@endif'></wysiwyg-editor>
+        </div>
         <div class="mb-2"></div>
         <div class="form-group">
             <label for="attachment" class="form-label">{{__('scarves.label.main_image')}}</label>

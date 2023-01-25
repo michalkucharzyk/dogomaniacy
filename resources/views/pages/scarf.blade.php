@@ -22,6 +22,10 @@
                         <div class="header-description">Pielęgnacja</div>
                         <div class="description">{!! $scarf->description_care !!}</div>
                     @endif
+                    @if($scarf->description_comments)
+                        <div class="header-description">Uwagi</div>
+                        <div class="description">{!! $scarf->description_comments !!}</div>
+                    @endif
                 </div>
             </div>
             @if (Auth::check())

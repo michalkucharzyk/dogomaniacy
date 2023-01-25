@@ -12,5 +12,6 @@ return [
         'position' => 'Kolejność',
         'position_placeholder' => 'Kolejność wyświetlania apaszki',
         'description_care' => 'Pielęgnacja',
+        'description_comments' => 'Uwagi',
     ],
 ];
