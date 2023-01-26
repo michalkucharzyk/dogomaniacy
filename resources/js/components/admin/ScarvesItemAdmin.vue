@@ -1,37 +1,36 @@
 <template>
-    <div>
-        <div class="image">
-            <div v-for="(image, index) in this.scarf.images">
-                <img v-if="image.main_image === 1" :src="image.path" :alt="image.name">
+    <tr>
+        <td>{{ this.index + 1 }}</td>
+        <td>
+            <div class="flex-center-start">
+                <div v-for="(image) in this.scarf.images">
+                    <img v-if="image.main_image === 1" :src="image.path" :alt="image.name">
+                </div>
+                <div>{{ this.scarf.name }}</div>
             </div>
-            <div class="other-info text-secondary">Liczba zdjęć: {{ getCountImage }}</div>
-        </div>
-        <div class="info">
-            <div class="title">{{ this.scarf.name }}</div>
-
+        </td>
+        <td>{{ getCountImage }}</td>
+        <td>{{ getFormatData(this.scarf.created_at) }}</td>
+        <td>{{ getFormatData(this.scarf.updated_at) }}</td>
+        <td>
             <div class="form-check form-switch">
-                <input class="form-check-input" @change="changePublic()" type="checkbox" :checked="this.isPublic">
+                <input class="form-check-input" @change="changePublic($event)" type="checkbox" :checked="this.isPublic">
                 <label class="form-check-label" for="public">Publikuj</label>
             </div>
-
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" :checked="this.isSoldOut" disabled>
                 <label class="form-check-label" for="public">Wyprzedane</label>
             </div>
-
-            <div class="other-info"><span
-                class="fw-bold">Data utworzenia: </span>{{ getFormatData(this.scarf.created_at) }}
-            </div>
-            <div v-if="this.scarf.updated_at !== null" class="other-info"><span
-                class="fw-bold">Data aktualizacji: </span>{{ getFormatData(this.scarf.updated_at) }}
-            </div>
+        </td>
+        <td>
             <div class="button-details">
-                <button type="button" class="btn btn-danger btn-sm" @click="deleteScarf(this.scarf, $event)">Usuń</button>
+                <button type="button" class="btn btn-danger btn-sm" @click="deleteScarf(this.scarf, $event)">Usuń
+                </button>
                 <a :href="getRouteEdit" class="btn btn-primary btn-sm">Edytuj</a>
                 <a :href="getRouteShow" target="_blank" class="btn btn-success btn-sm">Pokaż</a>
             </div>
-        </div>
-    </div>
+        </td>
+    </tr>
 </template>
 
 <script>
@@ -46,7 +45,7 @@ export default {
         }
     },
 
-    props: ['scarf'],
+    props: ['index', 'scarf'],
     computed: {
         getCountImage() {
             return this.scarf.images.length
@@ -64,7 +63,7 @@ export default {
 
     },
     methods: {
-        changePublic() {
+        changePublic($event) {
             this.$swal({
                 title: "Zmień status",
                 text: "Czy napewno chcesz zmienić status publikacji opaszki",
@@ -75,7 +74,7 @@ export default {
             }).then((result) => {
                 if (result.isConfirmed === true) {
                     this.isPublic = !this.isPublic;
-                    axios.put('/admin/scarves/'+ this.scarf.id+'/change-public}')
+                    axios.put('/admin/scarves/' + this.scarf.id + '/change-public}')
                         .then(response => {
                             this.$swal({
                                 title: 'Wspaniale',
@@ -83,6 +82,8 @@ export default {
                                 icon: "info",
                             })
                         })
+                } else {
+                    $event.target.checked = !$event.target.checked;
                 }
             });
         },
@@ -103,6 +104,10 @@ export default {
         },
 
         getFormatData($data) {
+            if ($data === null) {
+                return '--'
+            }
+
             return moment(String($data)).format('YYYY-MM-DD HH:mm')
         }
     }
@@ -110,23 +115,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-.image {
-    img {
-        width: 230px;
-        height: auto;
-        border-radius: 10px;
-    }
+img {
+    width: 50px;
+    height: auto;
+    border-radius: 10px;
 }
 
-.title {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.description {
-    font-size: 16px;
-    color: #777777
-}
 
 .button-details {
     margin-top: 10px;

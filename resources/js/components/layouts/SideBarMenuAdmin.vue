@@ -93,7 +93,8 @@ aside {
     }
     &.toggle-menu {
         padding: 6px;
-        min-width: 0;
+        min-width: 65px;
+        align-items: center;
 
         .menu-items {
             a {
