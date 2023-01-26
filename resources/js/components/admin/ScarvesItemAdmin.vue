@@ -4,7 +4,7 @@
         <td>
             <div class="flex-center-start">
                 <div v-for="(image) in this.scarf.images">
-                    <img v-if="image.main_image === 1" :src="image.path" :alt="image.name">
+                    <img v-if="image.main_image === 1" :src="image.path" :alt="image.name" class="m-r-10">
                 </div>
                 <div>{{ this.scarf.name }}</div>
             </div>
@@ -119,6 +119,7 @@ img {
     width: 50px;
     height: auto;
     border-radius: 10px;
+    margin-right: 10px;
 }
 
 
