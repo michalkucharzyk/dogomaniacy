@@ -1,8 +1,24 @@
 <template>
-    <div class="scarves-list">
-        <div v-for="(scarf) in getScarves" class="scarves-item-wrap">
-            <scarves-item-admin :scarf="scarf" :key="scarf.id" @click-delete-scarf="deleteScarf"></scarves-item-admin>
-        </div>
+    <div>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Liczba zdjęć</th>
+                <th scope="col">Data dodania</th>
+                <th scope="col">Data aktualizacji</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <scarves-item-admin v-for="(scarf, index) in getScarves" :scarf="scarf" :index="index" :key="scarf.id"
+                                @click-delete-scarf="deleteScarf"></scarves-item-admin>
+            </tbody>
+        </table>
+    </div>
     </div>
 </template>
 
@@ -23,7 +39,7 @@ export default {
     },
     methods: {
         deleteScarf: function (scarf, $event) {
-            let box = $event.target.closest('.scarves-item-wrap');
+            let box = $event.target.closest('tr');
             axios.delete('/admin/scarves/' + scarf.id)
                 .then(response => {
                     this.$swal({
@@ -39,22 +55,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.scarves-list {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 25px;
 
-    .scarves-item-wrap {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
-        border-radius: 10px;
-        border: 2px solid #11101d;
-        padding: 10px;
-        max-width: 300px;
-    }
-}
 </style>

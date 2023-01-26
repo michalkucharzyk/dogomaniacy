@@ -53,4 +53,16 @@ body {
             letter-spacing: 1.4px;
         }
     }
+
+    .flex-center-between {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .flex-center-start {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
 }
