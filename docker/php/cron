@@ -1,0 +1,1 @@
+#* * * * * root cd /var/www/extranet3_refactor && bin/console swiftmailer:spool:send >> /var/log/cron.log 2>&1
